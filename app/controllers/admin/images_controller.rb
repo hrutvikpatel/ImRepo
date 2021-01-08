@@ -26,7 +26,7 @@ class Admin::ImagesController < ApplicationController
       redirect_to admin_images_path
     else
       flash.now[:alert] = "Image fields cannot be blank!"
-      render 'admin/products/new'
+      render :new
     end
   end
 
@@ -36,15 +36,19 @@ class Admin::ImagesController < ApplicationController
 
   def update
     @image = Image.find(params[:id])
+    old_category = @image.categories
     response = @image.update(image_params)
+    new_category = @image.categories
 
     if response == true
-      @image.image_categories.destroy_all
-      @categories = params.dig(:product, :category_ids)
+      if old_category != new_category
+        @image.image_categories.destroy_all
+        @categories = params.dig(:product, :category_ids)
 
-      @category.each do |category|
-        @category = Category.find(catgory)
-        @image.categories << @category
+        @category.each do |category|
+          @category = Category.find(catgory)
+          @image.categories << @category
+        end
       end
 
       flash[:notice] = "Image has been updated!"
@@ -65,5 +69,11 @@ class Admin::ImagesController < ApplicationController
       flash.now[:alert] = "Failed to delete the image!"
       render :destroy
     end
+  end
+
+  private
+
+  def image_params
+    params.require(:image).permit(:title, :description, :price)
   end
 end

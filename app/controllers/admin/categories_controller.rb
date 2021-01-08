@@ -19,7 +19,7 @@ class Admin::CategoriesController < ApplicationController
       redirect_to admin_categories_path
     else
       flash.now[:alert] = "Category name field cannot be blank!"
-      render 'admin/images/new'
+      render :new
     end
   end
 
@@ -50,5 +50,11 @@ class Admin::CategoriesController < ApplicationController
       flash.now[:alert] = "Failed to delete category!"
       render :destroy
     end
+  end
+
+  private 
+
+  def category_params
+    params.require(:category).permit(:name)
   end
 end
