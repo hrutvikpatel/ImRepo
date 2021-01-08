@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'images/index'
+    get 'images/new'
+    get 'images/create'
+    get 'images/edit'
+    get 'images/update'
+    get 'images/destroy'
+  end
   root to: 'images#index'
 
   devise_for :admins
