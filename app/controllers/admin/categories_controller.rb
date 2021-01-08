@@ -18,7 +18,7 @@ class Admin::CategoriesController < ApplicationController
       flash[:notice] = "Created new category!"
       redirect_to admin_categories_path
     else
-      flash[:notice] = "Category name field cannot be blank!"
+      flash.now[:alert] = "Category name field cannot be blank!"
       render 'admin/images/new'
     end
   end
@@ -35,7 +35,7 @@ class Admin::CategoriesController < ApplicationController
       flash[:notice] = "Category has been updated!"
       redirect_to admin_categories_path
     else
-      flash[:notice] = "Failed to update category!"
+      flash.now[:alert] = "Failed to update category!"
       render :edit
     end
   end
@@ -47,7 +47,7 @@ class Admin::CategoriesController < ApplicationController
       flash[:notice] = "Category has been deleted!"
       redirect_to admin_categories_path
     else
-      flash[:notice] = "Failed to delete category!"
+      flash.now[:alert] = "Failed to delete category!"
       render :destroy
     end
   end
