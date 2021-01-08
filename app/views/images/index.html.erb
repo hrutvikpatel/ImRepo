@@ -1,5 +1,6 @@
+<%= render partial: "shared/hero", locals: { title: 'Welcome to ImRepo', subtitle: 'Explore Images and Buy Rights' } %>
 <div class="container">
-  <div class="column is-one-quarter is-multiline">
+  <div class="row">
     <%= render partial: "shared/image", collection: @images  %>
   </div>
 </div>

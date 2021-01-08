@@ -1,2 +1,15 @@
-<h1>Admin::Categories#index</h1>
-<p>Find me in app/views/admin/categories/index.html.erb</p>
+<div class="container">
+  <div class="column is-one-quarter is-multiline">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "admin_category", collection: @categories %>
+      </tbody>
+    </table>
+  </div>
+</div>

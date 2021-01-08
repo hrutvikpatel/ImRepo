@@ -1,0 +1,8 @@
+<tr>
+  <td><%= admin_image.id %></td>
+  <td><%= admin_image.name %></td>
+  <td><%= admin_image.description %></td>
+  <td><%= admin_image.price %></td>
+  <td><%= link_to 'Edit', edit_admin_image_path(admin_image) %></td>
+  <td><%= link_to 'Delete', admin_image_path(admin_image), method: :delete %></td>
+</tr>

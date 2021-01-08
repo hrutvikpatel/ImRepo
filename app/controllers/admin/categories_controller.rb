@@ -45,11 +45,10 @@ class Admin::CategoriesController < ApplicationController
 
     if response == true
       flash[:notice] = "Category has been deleted!"
-      redirect_to admin_categories_path
     else
       flash.now[:alert] = "Failed to delete category!"
-      render :destroy
     end
+    redirect_to admin_categories_path
   end
 
   private 

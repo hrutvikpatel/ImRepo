@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
   root to: 'images#index'
 
-  devise_for :admins
   devise_for :users
 
   resources :images, only: [:index, :show]
   resources :categories, only: [:show]
 
   namespace :admin do
-    root to: 'product#index'
+    root to: 'images#index'
     resources :images, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
   end

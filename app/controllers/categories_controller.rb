@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
-    @products = @category.products.all
+    @images = @category.images.all
   end
 end

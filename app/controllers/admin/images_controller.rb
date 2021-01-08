@@ -43,7 +43,7 @@ class Admin::ImagesController < ApplicationController
     if response == true
       if old_category != new_category
         @image.image_categories.destroy_all
-        @categories = params.dig(:product, :category_ids)
+        @categories = params.dig(:image, :category_ids)
 
         @category.each do |category|
           @category = Category.find(catgory)
@@ -64,11 +64,10 @@ class Admin::ImagesController < ApplicationController
 
     if response == true
       flash[:notice] = "Image has been deleted!"
-      redirect_to admin_images_path
     else
       flash.now[:alert] = "Failed to delete the image!"
-      render :destroy
     end
+    redirect_to admin_images_path
   end
 
   private

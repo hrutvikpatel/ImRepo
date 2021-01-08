@@ -1,2 +1,12 @@
-<h1>Admin::Images#edit</h1>
-<p>Find me in app/views/admin/images/edit.html.erb</p>
+<%= render partial: "shared/hero", locals: { title: "Admin", subtitle: "Edit Image" } %>
+<div class="container">
+  <%= simple_form_for [:admin, @category], class: "form-horizontal" do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.association :categories, collection: Category.all, as: :check_boxes, include_hidden: false %>
+    <%= f.button :submut %>
+  <% end %>
+
+  <%= link_to "Back to Image List", admin_iamges_path %>
+</div>
