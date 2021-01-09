@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root to: 'images#index'
 
   devise_for :users
-
+  devise_for :admins
+  
   resources :images, only: [:index, :show]
   resources :categories, only: [:show]
 
