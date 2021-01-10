@@ -7,7 +7,7 @@ class Admin::ImagesController < ApplicationController
   end
 
   def new
-    @images = Image.new
+    @image = Image.new
   end
 
   def create
