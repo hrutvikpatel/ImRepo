@@ -24,16 +24,12 @@
           <div class="position-sticky pt-3">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
-                  <span data-feather="home"></span>
-                  Images
-                </a>
+                <% images_class = current_page?(images_path) ? "text-primary" : "" %>
+                <%= link_to 'Images', images_path, :class => "nav-link h6 #{images_class}" %>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">
-                  <span data-feather="file"></span>
-                  
-                </a>
+                <% categories_class = current_page?(categories_path) ? "text-primary" : "" %>
+                <%= link_to 'Categories', categories_path, :class => "nav-link h6 #{categories_class}" %>
               </li>
             </ul>
 
@@ -45,16 +41,12 @@
             </h6>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Products
-                </a>
+                <% admin_images_class = current_page?(admin_images_path) ? "text-primary" : "" %>
+                <%= link_to 'Images', admin_images_path, :class => "nav-link h6 #{admin_images_class}" %>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Categories
-                </a>
+                <% admin_categories_class = current_page?(admin_categories_path) ? "text-primary" : "" %>
+                <%= link_to 'Categories', admin_categories_path, :class => "nav-link h6 #{admin_categories_class}" %>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
