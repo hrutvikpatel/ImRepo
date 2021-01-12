@@ -1,0 +1,8 @@
+<tr>
+  <th scope="row"><%= admin_product.id %></td>
+  <td><%= admin_product.title %></td>
+  <td><%= admin_product.description %></td>
+  <td><%= admin_product.price %></td>
+  <td><%= link_to 'Edit', edit_admin_product_path(admin_product) %></td>
+  <td><%= link_to 'Delete', admin_product_path(admin_product), method: :delete %></td>
+</tr>

@@ -1,6 +1,6 @@
 <%= render partial: "shared/hero", locals: { title: "Admin", subtitle: "Edit Image" } %>
 <div class="container">
-  <%= simple_form_for [:admin, @image], class: "form-horizontal" do |f| %>
+  <%= simple_form_for [:admin, @product], class: "form-horizontal" do |f| %>
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :price %>
@@ -8,5 +8,5 @@
     <%= f.button :submit %>
   <% end %>
 
-  <%= link_to "Back to Image List", admin_images_path %>
+  <%= link_to "Back to Product List", admin_products_path %>
 </div>

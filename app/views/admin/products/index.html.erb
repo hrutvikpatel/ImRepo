@@ -1,8 +1,8 @@
-<%= render partial: "shared/hero", locals: { title: "Admin Dashboard", subtitle: "Images" } %>
+<%= render partial: "shared/hero", locals: { title: "Admin Dashboard", subtitle: "Products" } %>
 
 <div class="container">
   <div class="">
-    <%= link_to "Add Image", new_admin_image_path %>
+    <%= link_to "Add Product", new_admin_product_path %>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <%= render partial: "admin_image", collection: @images %>
+        <%= render partial: "admin_product", collection: @products %>
       </tbody>
     </table>
   </div>

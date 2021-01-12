@@ -24,8 +24,8 @@
           <div class="position-sticky pt-3">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <% images_class = current_page?(images_path) ? "text-primary" : "" %>
-                <%= link_to 'Images', images_path, :class => "nav-link h6 #{images_class}" %>
+                <% products_class = current_page?(products_path) ? "text-primary" : "" %>
+                <%= link_to 'Images', products_path, :class => "nav-link h6 #{products_class}" %>
               </li>
               <li class="nav-item">
                 <% categories_class = current_page?(categories_path) ? "text-primary" : "" %>
@@ -41,8 +41,8 @@
             </h6>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <% admin_images_class = current_page?(admin_images_path) ? "text-primary" : "" %>
-                <%= link_to 'Images', admin_images_path, :class => "nav-link h6 #{admin_images_class}" %>
+                <% admin_products_class = current_page?(admin_products_path) ? "text-primary" : "" %>
+                <%= link_to 'Products', admin_products_path, :class => "nav-link h6 #{admin_products_class}" %>
               </li>
               <li class="nav-item">
                 <% admin_categories_class = current_page?(admin_categories_path) ? "text-primary" : "" %>
