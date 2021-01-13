@@ -26,13 +26,14 @@ body {
  */
 
 .sidebar {
-  position: fixed;
+  position: relative;
   top: 0;
   bottom: 0;
   left: 0;
   z-index: 100;
-  padding: 48px 0 0;
+  padding: 0 0;
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  height: 100vh;
 }
 
 @media (max-width: 767.98px) {
@@ -104,4 +105,7 @@ body {
   right: 0;
 }
 
-
+.card-img-top {
+  width: 18rem;
+  height: auto;
+}

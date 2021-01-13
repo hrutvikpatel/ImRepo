@@ -14,7 +14,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
     response = @product.save
 
-    if response == true
+    if response
       @categories = params.dig(:product, :category_ids)
 
       @categories.each do |category|
@@ -40,7 +40,7 @@ class Admin::ProductsController < ApplicationController
     response = @product.update(product_params)
     new_category = @product.categories
 
-    if response == true
+    if response
       if old_category != new_category
         @product.product_categories.destroy_all
         @categories = params.dig(:product, :category_ids)
@@ -62,10 +62,10 @@ class Admin::ProductsController < ApplicationController
   def destroy
     response = Product.destroy(params[:id])
 
-    if response == true
+    if response
       flash[:notice] = "Product has been deleted!"
     else
-      flash.now[:alert] = "Failed to delete the product!"
+      flash[:alert] = "Failed to delete the product!"
     end
     redirect_to admin_products_path
   end
@@ -73,6 +73,6 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:title, :description, :price)
+    params.require(:product).permit(:attachment, :title, :description, :price)
   end
 end

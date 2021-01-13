@@ -1,7 +1,8 @@
 <%= render partial: "shared/hero", locals: { title: "Admin Dashboard", subtitle: "Categories" } %>
 
 <div class="container">
-  <div class="column is-one-quarter is-multiline">
+  <div class="">
+    <%= link_to "Add Category", new_admin_category_path %>
     <table class="table table-hover">
       <thead>
         <tr>

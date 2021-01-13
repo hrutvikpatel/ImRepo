@@ -14,7 +14,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.new(category_params)
     response = @category.save
 
-    if response == true
+    if response
       flash[:notice] = "Created new category!"
       redirect_to admin_categories_path
     else
@@ -31,7 +31,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     response = @category.update(category_params)
 
-    if response == true
+    if response
       flash[:notice] = "Category has been updated!"
       redirect_to admin_categories_path
     else
@@ -41,12 +41,17 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def destroy
+    if Category.find(params[:id]).products.first != nil
+      flash[:notice] = "Category cannot be delete if it contains more than one product!"
+      return
+    end
+
     response = Category.destroy(params[:id])
 
-    if response == true
+    if response
       flash[:notice] = "Category has been deleted!"
     else
-      flash.now[:alert] = "Failed to delete category!"
+      flash[:alert] = "Failed to delete category!"
     end
     redirect_to admin_categories_path
   end
