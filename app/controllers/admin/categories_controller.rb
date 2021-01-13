@@ -43,15 +43,14 @@ class Admin::CategoriesController < ApplicationController
   def destroy
     if Category.find(params[:id]).products.first != nil
       flash[:notice] = "Category cannot be delete if it contains more than one product!"
-      return
-    end
-
-    response = Category.destroy(params[:id])
-
-    if response
-      flash[:notice] = "Category has been deleted!"
     else
-      flash[:alert] = "Failed to delete category!"
+      response = Category.destroy(params[:id])
+
+      if response
+        flash[:notice] = "Category has been deleted!"
+      else
+        flash[:alert] = "Failed to delete category!"
+      end
     end
     redirect_to admin_categories_path
   end

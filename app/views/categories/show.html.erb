@@ -1,4 +1,4 @@
-<%= render partial: "shared/hero", locals: { title: @category.name.capitalize, subtitle: '' } %>
+<%= render partial: "shared/hero", locals: { title: @category.name, subtitle: "Category" } %>
 <div class="container">
   <div class="row">
     <%= render partial: "shared/product", collection: @products  %>
