@@ -1,7 +1,7 @@
 <%= render partial: "shared/hero", locals: { title: "Admin", subtitle: "New Category" } %>
 <div class="container">
   <%= simple_form_for [:admin, @category], class: "form-horizontal" do |f| %>
-    <%= f.input :name %>
+    <%= f.input :name, input_html: { required: true } %>
     <%= f.button :submit %>
   <% end %>
 

@@ -1,4 +1,12 @@
-<%= render partial: "shared/hero", locals: { title: "Admin Dashboard", subtitle: "Categories" } %>
+<%=
+  render partial: "shared/hero",
+  locals: {
+    title: "Admin Dashboard",
+    subtitle: "Categories",
+    search_method_path: admin_categories_path,
+    search_placeholder: "Search Categories..."
+  }
+%>
 
 <div class="container">
   <div class="">

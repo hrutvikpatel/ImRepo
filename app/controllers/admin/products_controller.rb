@@ -3,7 +3,7 @@ class Admin::ProductsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @products = Product.all
+    @products = Product.search(params[:search])
   end
 
   def new
@@ -78,6 +78,6 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:attachment, :title, :description, :price)
+    params.require(:product).permit(:attachment, :title, :description, :price, :search)
   end
 end

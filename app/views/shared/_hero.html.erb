@@ -1,8 +1,10 @@
 <%
- #locals
- title ||= nil
- subtitle ||= nil
- has_search ||= nil
+  #locals
+  title ||= nil
+  subtitle ||= nil
+  has_search ||= nil
+  search_method_path ||= nil
+  search_placeholder ||= nil
 %>
 
 <div class="container pt-3 justify-content-between">
@@ -11,10 +13,10 @@
       <h3><%= title %></h1>
       <p class="lead"><%= subtitle %></p>
     </div>
-    <% if has_search %>
+    <% if search_method_path %>
       <div class="col d-flex justify-content-end">
-        <%= form_tag(has_search[:method_path], method: :get, :class => "form-inline") do %>
-          <%= text_field_tag(:search, params[:search], :class => "form-control mr-sm-2") %>
+        <%= form_tag(search_method_path, method: :get, :class => "form-inline") do %>
+          <%= text_field_tag(:search, params[:search], :placeholder => search_placeholder, :class => "form-control mr-sm-2") %>
           <%= submit_tag("Search", :class => "btn btn-success my-2 my-sm-0") %>
         <% end %>
       </div>

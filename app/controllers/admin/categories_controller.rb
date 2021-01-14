@@ -3,7 +3,7 @@ class Admin::CategoriesController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @categories = Category.all
+    @categories = Category.search(params[:search])
   end
 
   def new
@@ -58,6 +58,6 @@ class Admin::CategoriesController < ApplicationController
   private 
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :search)
   end
 end

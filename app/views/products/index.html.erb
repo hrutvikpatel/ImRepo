@@ -1,5 +1,13 @@
 
-<%= render partial: "shared/hero", locals: { title: 'Images', has_search: { method_path: products_path } } %>
+<%=
+  render partial: "shared/hero",
+  locals: {
+    title:'Images',
+    search_method_path: products_path,
+    search_placeholder: "Search Images..."
+  }
+%>
+
 <div class="container pb-5">
   <div class="row mb-5">
     <% if @products && @products.count > 0 %>
