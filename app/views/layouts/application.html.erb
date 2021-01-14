@@ -13,11 +13,11 @@
   <body>
     <% flash.each do |type, msg| %>
       <% if type == "alert" %>
-        <div class="alert alert-danger text-align-center">
+        <div class="alert alert-danger text-center mb-0">
           <%= msg %>
         </div>
       <% else %>
-        <div class="alert alert-info text-align-center">
+        <div class="alert alert-info text-center mb-0">
           <%= msg %>
         </div>
       <% end %>

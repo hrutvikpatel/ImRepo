@@ -1,6 +1,24 @@
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4"><%= title %></h1>
-    <p class="lead"><%= subtitle %></p>
+<%
+ #locals
+ title ||= nil
+ subtitle ||= nil
+ has_search ||= nil
+%>
+
+<div class="container pt-3 justify-content-between">
+  <div class="row">
+    <div class="col">
+      <h3><%= title %></h1>
+      <p class="lead"><%= subtitle %></p>
+    </div>
+    <% if has_search %>
+      <div class="col d-flex justify-content-end">
+        <%= form_tag(products_path, method: :get, :class => "form-inline") do %>
+          <%= text_field_tag(:search, params[:search], :class => "form-control mr-sm-2") %>
+          <%= submit_tag("Search", :class => "btn btn-success my-2 my-sm-0") %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
+  <hr>
 </div>

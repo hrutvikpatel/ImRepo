@@ -7,7 +7,12 @@ class Admin::ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    if Category.count == 0
+      flash[:alert] = "You need to first create at least one category!"
+      redirect_to admin_products_path
+    else
+      @product = Product.new
+    end
   end
 
   def create
