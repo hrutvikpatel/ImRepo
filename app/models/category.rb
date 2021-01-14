@@ -7,4 +7,12 @@ class Category < ApplicationRecord
   def name=(s)
     write_attribute(:name, s.to_s.titleize)
   end
+
+  def self.search(search)
+    if search
+      Category.where('name LIKE :search', search: "%#{search}%")
+    else
+      Category.all
+    end
+  end
 end

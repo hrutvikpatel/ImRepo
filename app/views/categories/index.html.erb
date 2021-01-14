@@ -1,6 +1,10 @@
-<%= render partial: "shared/hero", locals: { title: 'Categories' } %>
+<%= render partial: "shared/hero", locals: { title: 'Categories', has_search: { method_path: categories_path } } %>
 <div class="container">
   <div class="row">
-    <%= render partial: "shared/category", collection: @categories %>
+    <% if @categories && @categories.count > 0 %>
+      <%= render partial: "shared/category", collection: @categories %>
+    <% else %>
+      <p>No categories found!</p>
+    <% end %>
   </div>
 </div>
