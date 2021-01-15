@@ -40,8 +40,12 @@
               </li>
               <% if user_signed_in? %>
                 <li class="nav-item">
-                  <% categories_class = current_page?(categories_path) ? "text-primary" : "" %>
-                  <%= link_to 'Orders', categories_path, :class => "nav-link h6 #{categories_class}" %>
+                  <% user_account_class = current_page?(user_account_path(current_user.id)) ? "text-primary" : "" %>
+                  <%= link_to 'Account', user_account_path(current_user.id), :class => "nav-link h6 #{user_account_class}" %>
+                </li>
+                <li class="nav-item">
+                  <% user_orders_class = current_page?(user_orders_path(current_user.id)) ? "text-primary" : "" %>
+                  <%= link_to 'Orders', user_orders_path(current_user.id), :class => "nav-link h6 #{user_orders_class}" %>
                 </li>
               <% end %>
             </ul>

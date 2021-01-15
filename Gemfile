@@ -41,6 +41,7 @@ group :development, :test do
   gem 'guard', '~> 2.16', '>= 2.16.2'
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
   gem 'better_errors', '~> 2.9', '>= 2.9.1'
+  gem 'pry', '~> 0.13.1'
 end
 
 group :development do

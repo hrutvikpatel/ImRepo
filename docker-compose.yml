@@ -1,8 +1,7 @@
 version: "3.9"
 services:
-  imrepo:
+  monolith:
     build: .
-    container_name: imrepo
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/myapp
