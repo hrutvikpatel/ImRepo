@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :account
+  has_many :orders
 
   after_save :create_account
 

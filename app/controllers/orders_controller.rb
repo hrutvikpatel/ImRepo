@@ -27,7 +27,6 @@ class OrdersController < ApplicationController
         flash[:alert] = "Unable to place your order, due to an insufficient account balance!"
       end
     rescue => exception
-      puts exception
       flash[:alert] = "Failed to place the order!"
     end
 
