@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_013927) do
     t.integer "user_id"
     t.integer "account_id"
     t.integer "product_id"
+    t.decimal "cost", precision: 10, scale: 2, default: "0.0", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_orders_on_account_id"

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :users do 
     resource :account, :controller => 'account', only: [:show, :update]
-    resources :orders, only: [:index]
+    resources :orders, only: [:index, :create]
   end
   
   resources :products, :path => :images, only: [:index, :show]

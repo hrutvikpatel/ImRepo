@@ -8,6 +8,9 @@
       <p class="card-text">
         <%= product.description %>
       </p>
+      <% if user_signed_in? %>
+        <%= link_to('Buy Now', user_orders_path(current_user.id, product_id: product.id), method: :post, :class => "btn btn-success") %>        
+      <% end %>
     </div>
   </div>
 </div>
