@@ -1,0 +1,8 @@
+<tr>
+  <td><%= localize(admin_order.created_at, :format => :long) %></td>
+  <td><%= admin_order.user.email %></td>
+  <td><%= image_tag(admin_order.product.attachment, :class => "card-img-top") %></td>
+  <td><%= admin_order.product.title %></td>
+  <td><%= admin_order.product.description %></td>
+  <td>$<%= admin_order.cost %></td>
+</tr>

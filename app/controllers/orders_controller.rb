@@ -10,7 +10,9 @@ class OrdersController < ApplicationController
     product = Product.find_by(:id => params[:product_id])
 
     if user.account.orders.find_by(:product_id => product.id)
-      flash.now[:alert] = "You have already bought the rights to this image!"
+      puts "hello"
+      flash[:alert] = "You have already bought the rights to this image!"
+      redirect_to products_path
       return
     end
 
@@ -18,7 +20,7 @@ class OrdersController < ApplicationController
       if user.account.balance >= product.price
         ActiveRecord::Base.transaction do
           user.account.update(:balance => user.account.balance - product.price)
-          Order.create(:user_id => user.id, :account_id => user.account.id, :product_id => product.id)
+          Order.create(:user_id => user.id, :account_id => user.account.id, :product_id => product.id, :cost => product.price)
           flash[:notice] = "Successfully placed your order!"
         end
       else

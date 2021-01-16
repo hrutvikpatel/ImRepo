@@ -45,7 +45,7 @@
                 </li>
                 <li class="nav-item">
                   <% user_orders_class = current_page?(user_orders_path(current_user.id)) ? "text-primary" : "" %>
-                  <%= link_to 'Orders', user_orders_path(current_user.id), :class => "nav-link h6 #{user_orders_class}" %>
+                  <%= link_to 'Order History', user_orders_path(current_user.id), :class => "nav-link h6 #{user_orders_class}" %>
                 </li>
               <% end %>
             </ul>
@@ -67,10 +67,8 @@
                   <%= link_to 'Categories', admin_categories_path, :class => "nav-link h6 #{admin_categories_class}" %>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Sales
-                  </a>
+                  <% admin_orders_class = current_page?(admin_orders_path) ? "text-primary" : "" %>
+                  <%= link_to 'Order History', admin_orders_path, :class => "nav-link h6 #{admin_orders_class}" %>
                 </li>
               </ul>
             <% end %>
