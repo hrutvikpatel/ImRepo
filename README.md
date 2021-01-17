@@ -101,6 +101,8 @@ This application was made using `Ruby on Rails`.
 * Implement profile for user accounts
 * Allow image download
 * Use React for frontend instead of rails views and bootstrap
+* Add test cases and coverage report
+* Add access controll
 
 ## Local Development Setup Using Docker
 
