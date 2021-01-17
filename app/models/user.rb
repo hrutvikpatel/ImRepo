@@ -12,8 +12,4 @@ class User < ApplicationRecord
   def create_account
     Account.create(:user => self, balance: 0)
   end
-
-  def is_admin?
-    false
-  end
 end

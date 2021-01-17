@@ -16,22 +16,24 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
-    puts product_params
-    @product = Product.new(product_params)
-    response = @product.save
+    begin
+      ActiveRecord::Base.transaction do
+        @product = Product.new(product_params)
+        @categories = params.dig(:product, :category_ids)
 
-    if response
-      @categories = params.dig(:product, :category_ids)
+        @categories&.each do |category|
+          @category = Category.find(category)
+          @product.categories << @category
+        end
 
-      @categories.each do |category|
-        @category = Category.find(category)
-        @product.categories << @category
+        @product.save!
+
+        flash[:notice] = "Created new product!"
+        redirect_to admin_products_path
       end
-
-      flash[:notice] = "Created new product!"
-      redirect_to admin_products_path
-    else
-      flash.now[:alert] = "Product fields cannot be blank!"
+    rescue => exception
+      puts exception
+      flash.now[:alert] = "Failed to create new product!"
       render :new
     end
   end
@@ -41,36 +43,44 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
-    old_category = @product.categories
-    response = @product.update(product_params)
-    new_category = @product.categories
+    begin
+      ActiveRecord::Base.transaction do
+        @product = Product.find(params[:id])
+        @product.assign_attributes(product_params)
+        new_category_ids = params.dig(:product, :category_ids)&.map(&:to_i)
+        old_category_ids = @product.categories.pluck(:id)
+  
+        if old_category_ids != new_category_ids
+          @product.product_categories.destroy_all
+          @categories = params.dig(:product, :category_ids)
 
-    if response
-      if old_category != new_category
-        @product.product_categories.destroy_all
-        @categories = params.dig(:product, :category_ids)
-
-        @category.each do |category|
-          @category = Category.find(catgory)
-          @product.categories << @category
+          @categories&.each do |category|
+            @category = Category.find(category)
+            @product.categories << @category
+          end
         end
-      end
 
-      flash[:notice] = "Product has been updated!"
-      redirect_to admin_products_path
-    else
-      flash.now[:alert] = "Failed to delete product!"
+        @product.update!(product_params)
+
+        flash[:notice] = "Product has been updated!"
+        redirect_to admin_products_path
+      end
+    rescue => exception
+      flash.now[:alert] = "Failed to update product!"
       render :edit
     end
   end
 
   def destroy
-    response = Product.destroy(params[:id])
-
-    if response
+    begin
+      if Order.where(:product_id => params[:id]).count != 0
+        flash[:alert] = "Cannot delete a product that has been ordered by a customer!"
+        redirect_to admin_products_path
+        return
+      end
+      response = Product.destroy(params[:id])
       flash[:notice] = "Product has been deleted!"
-    else
+    rescue => exception
       flash[:alert] = "Failed to delete the product!"
     end
     redirect_to admin_products_path
@@ -79,6 +89,6 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:attachment, :title, :description, :price, :search)
+    params.require(:product).permit(:attachment, :title, :description, :price, :search, :category_ids)
   end
 end

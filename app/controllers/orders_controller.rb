@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
     product = Product.find_by(:id => params[:product_id])
 
     if user.account.orders.find_by(:product_id => product.id)
-      puts "hello"
       flash[:alert] = "You have already bought the rights to this image!"
       redirect_to products_path
       return
@@ -25,6 +24,8 @@ class OrdersController < ApplicationController
         end
       else
         flash[:alert] = "Unable to place your order, due to an insufficient account balance!"
+        redirect_to user_account_path(current_user.id)
+        return
       end
     rescue => exception
       flash[:alert] = "Failed to place the order!"

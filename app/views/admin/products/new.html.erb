@@ -1,11 +1,11 @@
 <%= render partial: "shared/hero", locals: { title: "Admin", subtitle: "New Product" } %>
 <div class="container">
   <%= simple_form_for [:admin, @product], class: "form-horizontal" do |f| %>
-    <%= f.input :attachment, as: :file, :multiple => false, label: "Upload Image", input_html: { required: true }%>
-    <%= f.input :title, input_html: { required: true } %>
-    <%= f.input :description, input_html: { required: true } %>
-    <%= f.input :price, input_html: { required: true } %>
-    <%= f.association :categories, collection: Category.all, as: :check_boxes, include_hidden: false %>
+    <%= f.input :attachment, as: :file, :multiple => false, label: "Upload Image", :required => true %>
+    <%= f.input :title, :required => true%>
+    <%= f.input :description, :required => true%>
+    <%= f.input :price, :required => true %>
+    <%= f.association :categories, collection: Category.all, as: :check_boxes, include_hidden: false, :required => true %>
     <%= f.button :submit %>
   <% end %>
 

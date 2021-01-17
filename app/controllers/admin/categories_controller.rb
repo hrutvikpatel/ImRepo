@@ -11,14 +11,13 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
-    response = @category.save
-
-    if response
+    begin
+      @category = Category.new(category_params)
+      @category.save!
       flash[:notice] = "Created new category!"
       redirect_to admin_categories_path
-    else
-      flash.now[:alert] = "Category name field cannot be blank!"
+    rescue => exception
+      flash.now[:alert] = "Failed to create category!"
       render :new
     end
   end
@@ -28,30 +27,29 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:id])
-    response = @category.update(category_params)
-
-    if response
+    begin
+      @category = Category.find(params[:id])
+      @category.update!(category_params)
       flash[:notice] = "Category has been updated!"
       redirect_to admin_categories_path
-    else
+    rescue => exception
       flash.now[:alert] = "Failed to update category!"
       render :edit
     end
   end
 
   def destroy
-    if Category.find(params[:id]).products.first != nil
-      flash[:notice] = "Category cannot be delete if it contains more than one product!"
-    else
-      response = Category.destroy(params[:id])
-
-      if response
-        flash[:notice] = "Category has been deleted!"
+    begin
+      if Category.find(params[:id]).products.first != nil
+        flash[:alert] = "Category cannot be delete if it contains more than one product!"
       else
-        flash[:alert] = "Failed to delete category!"
+        Category.destroy(params[:id])
+        flash[:notice] = "Category has been deleted!"
       end
+    rescue => exception
+      flash[:alert] = "Failed to delete category!"
     end
+
     redirect_to admin_categories_path
   end
 

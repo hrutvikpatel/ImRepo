@@ -123,7 +123,7 @@ Once your docker container is running, and if you haven't setup your database yo
 3. Create db: `rails db:create`
 4. Run all the db:migrations: `rails db:migrate`
 5. Now we need to create an admin user via `rails console` so that an admin can setup the products and categories for the store.
-	1. Run: `rails c` (This will bring up the rails command line and gives you access to make changes to the DB or test out pieces of code)
+	1. Run: `rails c` (This will bring up the rails command line and gives you access to make changes to the DB or test out code)
 	2. To create an admin user run: `Admin.create(:email => 'email', :password => 'password')`
 	3. You can now login using the admin credentials via `/admins/sign_in`
 
