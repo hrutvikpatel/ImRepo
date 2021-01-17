@@ -10,7 +10,7 @@ This application was made using `Ruby on Rails`.
 
 ### Features Implemented:
 
-* Unauthenticated Users
+* Unauthenticated Users/Customers
   * ImRepo allows users that have not logged in so far to view the Images and Categories page. Until they don't login they won't be able to purchase an image.
   *  Accessible routes or actions for all authenticated and unauthenicated users:
 		* `/images`
@@ -92,3 +92,38 @@ This application was made using `Ruby on Rails`.
 	* The order, also contains a cost attribute, to show how much the customer paid for the product at the time of purchase.
 	* Relationships:
 		* has one `account`, `user` and `product`
+
+### Improvements that I want to make
+* Store images on `AWS S3`
+* Use `MySQL` as DB instead of SQLite
+* Search images using machine learning instead of just image description
+* Add payments flow using Stripe and PayPal
+* Implement profile for user accounts
+* Allow image download
+* Use React for frontend instead of rails views and bootstrap
+
+## Local Development Setup Using Docker
+
+The rails application can be started using docker.
+I followed this guide to help me achieve this: [https://docs.docker.com/compose/rails/](https://docs.docker.com/compose/rails/)
+
+1. To build the docker image run: `docker-compose build`
+2. To boot up the rails app, run: `docker-compose up` (This will start the rails application on `http://localhost:3000/`)
+3. To stop the application run: `docker-compose down`
+
+**Note, the application uses guard-reload, this helps live reload files, so that during development we don't have to keep rebuilding or restarting the app via `rails s`. The only time you should consider rebuilding the app or image is if you have updated the `Gemfile`**
+
+### Database Setup
+
+This application uses SQLite, which is the default rails DB.
+
+Once your docker container is running, and if you haven't setup your database you will face a DB issue. To setup your the database follow these steps:
+1. Find the container id via `docker ps`
+2. Run: `docker exec -it <insert-container-id-here> bash` (This will get a bash shell inside the container)
+3. Create db: `rails db:create`
+4. Run all the db:migrations: `rails db:migrate`
+5. Now we need to create an admin user via `rails console` so that an admin can setup the products and categories for the store.
+	1. Run: `rails c` (This will bring up the rails command line and gives you access to make changes to the DB or test out pieces of code)
+	2. To create an admin user run: `Admin.create(:email => 'email', :password => 'password')`
+	3. You can now login using the admin credentials via `/admins/sign_in`
+
