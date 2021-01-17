@@ -94,8 +94,8 @@ This application was made using `Ruby on Rails`.
 		* has one `account`, `user` and `product`
 
 ### Improvements that I want to make
-* Store images on `AWS S3`
-* Use `MySQL` as DB instead of SQLite
+* Store images on AWS S3
+* Use MySQL as DB instead of SQLite
 * Search images using machine learning instead of just image description
 * Add payments flow using Stripe and PayPal
 * Implement profile for user accounts
