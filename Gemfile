@@ -42,6 +42,9 @@ group :development, :test do
   gem 'guard', '~> 2.16', '>= 2.16.2'
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
   gem 'better_errors', '~> 2.9', '>= 2.9.1'
+  gem 'rspec-rails', '~> 4.0.2'
+  gem 'factory_bot_rails', '~> 6.1'
+  gem 'faker', '~> 1.6', '>= 1.6.6'
 end
 
 group :development do
@@ -61,6 +64,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'simplecov'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

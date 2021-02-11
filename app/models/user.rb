@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   after_save :create_account
 
+  private
+  
   def create_account
     Account.create(:user => self, balance: 0)
   end
