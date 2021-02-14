@@ -27,6 +27,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -37,7 +38,6 @@ jobs:
         run: |
           gem install bundler
           bundler install
-          curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
           yarn
       - name: Create database
         run: |
