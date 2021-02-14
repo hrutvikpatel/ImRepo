@@ -8,10 +8,10 @@ name: Rails Tests
 on:
   pull_request:
     branches:
-      - 'main'
+      - 'master'
   push:
     branches:
-      - 'main'
+      - 'master'
 
 jobs:
   rspec-test:
