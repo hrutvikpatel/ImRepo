@@ -6,12 +6,7 @@ env:
 
 name: Rails Tests
 on:
-  pull_request:
-    branches:
-      - 'master'
-  push:
-    branches:
-      - 'master'
+  push: [push,pull_request]
 
 jobs:
   rspec-test:
