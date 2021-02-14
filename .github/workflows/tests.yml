@@ -36,10 +36,12 @@ jobs:
       - name: Install dependencies
         run: |
           gem install bundler
-          rails webpacker:install
           bundler install
+          curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+          yarn
       - name: Create database
         run: |
+          bundler exec rails webpacker:install
           bundler exec rails db:create RAILS_ENV=test
           bundler exec rails db:migrate RAILS_ENV=test
       - name: Run tests
