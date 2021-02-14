@@ -6,11 +6,8 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @products = @category.products.all
-  end
-
-  private
-
-  def categories_params
-    params.require(:category).permit(:search)
+  rescue StandardError
+    flash[:alert] = 'Category was not found!'
+    redirect_to categories_path
   end
 end
