@@ -4,7 +4,7 @@ env:
   POSTGRES_PASSWORD: password
   POSTGRES_DB: postgres
 
-name: Tests
+name: Rails Tests
 on:
   pull_request:
     branches:
