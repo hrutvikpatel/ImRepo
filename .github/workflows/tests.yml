@@ -27,20 +27,18 @@ jobs:
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
-      - name: Install yarn and node modules
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install
       - name: Install dependencies
         run: |
           gem install bundler
           bundler install
+          yarn install
       - name: Create database
         run: |
           bundler exec rails webpacker:install
