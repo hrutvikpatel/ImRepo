@@ -18,7 +18,7 @@ jobs:
       - name: Sleep
         uses: jakejarvis/wait-action@master
         with:
-          time: '120s'
+          time: '60s'
       - name: Check running servicies
         run: docker ps -a
       # - name: Create database
