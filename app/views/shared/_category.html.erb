@@ -2,7 +2,7 @@
   <div class="col d-flex m-2">
     <div class="card" style="width: 12rem;">
       <% if category.products.first %>
-        <%= image_tag(category.products.first.attachment, :class => "card-img-top") %>
+        <%= image_tag(category.products.first.image, :class => "card-img-top") %>
       <% else %>
         <img src="https://bulma.io/images/placeholders/1280x960.png" class="card-img-top" alt="...">
       <% end %>

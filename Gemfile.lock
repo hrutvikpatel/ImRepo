@@ -252,6 +252,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    seed_dump (3.3.1)
+      activerecord (>= 4)
+      activesupport (>= 4)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -329,6 +332,7 @@ DEPENDENCIES
   rails (~> 6.1.0)
   rspec-rails (~> 4.0.2)
   sass-rails (>= 6)
+  seed_dump
   selenium-webdriver
   simple_form (~> 5.0, >= 5.0.3)
   simplecov

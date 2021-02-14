@@ -9,7 +9,7 @@
 
 <div class="container">
   <div class="row">
-    <% if @categories && @categories.count > 0 %>
+    <% if @categories %>
       <%= render partial: "shared/category", collection: @categories %>
     <% else %>
       <p>No categories found!</p>

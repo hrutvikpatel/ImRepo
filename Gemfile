@@ -57,6 +57,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'better_errors', '~> 2.9', '>= 2.9.1'
   gem 'spring'
+  gem 'seed_dump'
 end
 
 group :test do

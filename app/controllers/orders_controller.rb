@@ -2,7 +2,9 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @orders = Order.where(:user_id => params[:user_id]).order("created_at DESC")
+    @orders = Order.where(:user_id => params[:user_id])
+                    .includes(product: [image_attachment: :blob])
+                    .order("created_at DESC")
   end
 
   def create
