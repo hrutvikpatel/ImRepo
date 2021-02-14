@@ -5,47 +5,29 @@ env:
   POSTGRES_DB: postgres
 
 name: Rails Tests
-on:
-  pull_request:
-    branches:
-      - 'master'
-  push:
-    branches:
-      - 'master'
+on: [push,pull_request]
 
 jobs:
   rspec-test:
     name: RSpec
     runs-on: ubuntu-18.04
-    services:
-      postgres:
-        image: postgres:latest
-        ports:
-        - 5432:5432
-        env:
-          POSTGRES_USER: ${{ env.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
-      - uses: bahmutov/npm-install@v1
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Build docker services
+        run: docker-compose up -d
+      - name: Sleep
+        uses: jakejarvis/wait-action@master
         with:
-          ruby-version: ${{ env.RUBY_VERSION }}
-      - name: Install postgres client
-        run: sudo apt-get install libpq-dev
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundler install
-          yarn install
+          time: '30s'
+      - name: Check running servicies
+        run: docker ps -a
       - name: Create database
         run: |
-          bundler exec rails webpacker:install
-          bundler exec rails db:create RAILS_ENV=test
-          bundler exec rails db:migrate RAILS_ENV=test
+          docker exec imrepo_monolith bundler exec rails webpacker:install
+          docker exec imrepo_monolith bundler exec rails db:create RAILS_ENV=test
+          docker exec imrepo_monolith bundler exec rails db:migrate RAILS_ENV=test
       - name: Run tests
-        run: bundler exec rspec spec
+        run: docker exec imrepo_monolith bundler exec rspec spec
       - name: Upload coverage results    
         uses: actions/upload-artifact@master
         if: always()
