@@ -1,17 +1,15 @@
-<% if category.products.first %>
-  <div class="col d-flex m-2">
-    <div class="card" style="width: 12rem;">
-      <% if category.products.first %>
-        <%= image_tag(category.products.first.image, :class => "card-img-top") %>
-      <% else %>
-        <img src="https://bulma.io/images/placeholders/1280x960.png" class="card-img-top" alt="...">
-      <% end %>
-      <div class="card-body">
-        <h5 class="card-title">
-          <%= category.name %>
-        </h5>
-        <%= link_to("View Category", category_path(category), :class => "btn btn-success") %>
-      </div>
+<div class="col d-flex m-2">
+  <div class="card" style="width: 12rem;">
+    <% if category.products.first %>
+      <%= image_tag(category.products.first.image, :class => "card-img-top") %>
+    <% else %>
+      <img src="https://bulma.io/images/placeholders/1280x960.png" class="card-img-top" alt="...">
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title">
+        <%= category.name %>
+      </h5>
+      <%= link_to("View Category", category_path(category), :class => "btn btn-success") %>
     </div>
   </div>
-<% end %>
+</div>

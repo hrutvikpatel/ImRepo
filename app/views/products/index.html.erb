@@ -10,10 +10,10 @@
 
 <div class="container pb-5">
   <div class="row mb-5">
-    <% if @products %>
+    <% if !@products.count.zero? %>
       <%= render partial: "shared/product", collection: @products  %>
     <% else %>
-      <p>No Images found!</p>
+      <p>No images found!</p>
     <% end %>
   </div>
 </div>
