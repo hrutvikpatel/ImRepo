@@ -53,7 +53,17 @@ RSpec.describe 'Categories', type: :request do
     end
 
     context 'has data' do
-      
+      before(:each) do
+        @category = Category.create(name: 'Dog')
+        @product = Product.new(title: 'doggo', description: 'playful doggo', price: 10, categories: [@category])
+        @product.image.attach(io: File.open('app/assets/dummy/Herding-Australian-Shepherd.jpg'), filename: 'Herding-Australian-Shepherd.jpg')
+        @product.save!
+      end
+
+      it 'should retrieves all products under a category' do
+        get category_path(@category.id)
+        expect(response.body).to include('doggo')
+      end
     end
   end
 end
