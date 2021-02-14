@@ -14,7 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build docker services
-        run: docker-compose up --build
+        run: docker-compose up -d
+      - name: Sleep
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '120s'
       - name: Check running servicies
         run: docker ps -a
       # - name: Create database
