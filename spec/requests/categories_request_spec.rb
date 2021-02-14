@@ -49,7 +49,7 @@ RSpec.describe 'Categories', type: :request do
       category = Category.create(name: 'Dog')
       get category_path(category.id)
       expect(response).to have_http_status(200)
-      expect(response.body).to include('')
+      expect(response.body).to include('Dog')
     end
 
     it 'should return category not found and redirect to categories index' do
@@ -60,7 +60,7 @@ RSpec.describe 'Categories', type: :request do
 
     it 'should retrieves all products under a category' do
       category = Category.create(name: 'Dog')
-      product = Product.new(title: 'doggo', description: 'playful doggo', price: 10, categories: [@category])
+      product = Product.new(title: 'doggo', description: 'playful doggo', price: 10, categories: [category])
       product.image.attach(io: File.open('app/assets/dummy/Herding-Australian-Shepherd.jpg'), filename: 'Herding-Australian-Shepherd.jpg')
       product.save!
       get category_path(category.id)
