@@ -36,14 +36,14 @@ jobs:
       - name: Install dependencies
         run: |
           gem install bundler
-          bundle exec rails webpacker:install
-          bundle install
+          bundler exec rails webpacker:install
+          bundler install
       - name: Create database
         run: |
-          bundle exec rails db:create RAILS_ENV=test
-          bundle exec rails db:migrate RAILS_ENV=test
+          bundler exec rails db:create RAILS_ENV=test
+          bundler exec rails db:migrate RAILS_ENV=test
       - name: Run tests
-        run: bundle exec rspec spec
+        run: bundler exec rspec spec
       - name: Upload coverage results    
         uses: actions/upload-artifact@master
         if: always()
