@@ -1,5 +1,5 @@
 env:
-  RUBY_VERSION: 2.6.3
+  RUBY_VERSION: 2.6
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: password
   POSTGRES_DB: postgres
@@ -15,7 +15,7 @@ on:
 
 jobs:
   rspec-test:
-    name: rspec
+    name: RSpec
     runs-on: ubuntu-18.04
     services:
       postgres:
