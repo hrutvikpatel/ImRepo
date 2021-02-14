@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'should have default balance of 0.0' do
-        expect(@user.account.balance).to be(0.0)
+        expect(@user.account.balance).to eq(0.0)
       end
     end
   end
