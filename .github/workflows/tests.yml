@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           gem install bundler
-          bundler exec rails webpacker:install
+          rails webpacker:install
           bundler install
       - name: Create database
         run: |
