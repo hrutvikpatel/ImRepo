@@ -44,26 +44,27 @@ RSpec.describe 'Categories', type: :request do
   end
 
   context 'GET #show' do
-    context 'has no data' do
-      it 'should return category not found and redirect to categories index' do
-        get category_path(1)
-        expect(response).to redirect_to(categories_path)
-        # TODO: FIGURE OUT HOW TO TEST THE FLASH MESSAGE LATER
-      end
+
+    it 'should render images not found' do
+      category = Category.create(name: 'Dog')
+      get category_path(category.id)
+      expect(response).to have_http_status(200)
+      expect(response.body).to include('')
     end
 
-    context 'has data' do
-      before(:each) do
-        @category = Category.create(name: 'Dog')
-        @product = Product.new(title: 'doggo', description: 'playful doggo', price: 10, categories: [@category])
-        @product.image.attach(io: File.open('app/assets/dummy/Herding-Australian-Shepherd.jpg'), filename: 'Herding-Australian-Shepherd.jpg')
-        @product.save!
-      end
+    it 'should return category not found and redirect to categories index' do
+      get category_path(1)
+      expect(response).to redirect_to(categories_path)
+      # TODO: FIGURE OUT HOW TO TEST THE FLASH MESSAGE LATER
+    end
 
-      it 'should retrieves all products under a category' do
-        get category_path(@category.id)
-        expect(response.body).to include('doggo')
-      end
+    it 'should retrieves all products under a category' do
+      category = Category.create(name: 'Dog')
+      product = Product.new(title: 'doggo', description: 'playful doggo', price: 10, categories: [@category])
+      product.image.attach(io: File.open('app/assets/dummy/Herding-Australian-Shepherd.jpg'), filename: 'Herding-Australian-Shepherd.jpg')
+      product.save!
+      get category_path(category.id)
+      expect(response.body).to include('doggo')
     end
   end
 end
