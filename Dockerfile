@@ -6,7 +6,7 @@ RUN apt-get update -qq && apt-get install -y nodejs yarn postgresql-client
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
-RUN bundle install && bundle update
+RUN yarn && bundle install && bundle update
 COPY . /myapp
 
 # Add a script to be executed every time the container starts.
