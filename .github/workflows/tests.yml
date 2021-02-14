@@ -34,8 +34,8 @@ jobs:
       - name: Create database
         run: |
           bundler exec rails webpacker:install
-          bundler exec rails db:create RAILS_ENV=test
-          bundler exec rails db:migrate RAILS_ENV=test
+          bundler exec rails db:create RAILS_ENV=ci_test
+          bundler exec rails db:migrate RAILS_ENV=ci_test
       - name: Run tests
         run: bundler exec rspec spec
       - name: Upload coverage results    
