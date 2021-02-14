@@ -12,7 +12,7 @@ jobs:
     name: RSpec
     runs-on: ubuntu-18.04
     services:
-      postgres:
+      db:
         image: postgres:latest
         ports:
         - 5432:5432
