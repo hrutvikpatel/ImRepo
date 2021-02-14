@@ -14,20 +14,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build docker services
-        run: docker-compose up --build
+        run: docker-compose up -d
+      - name: Sleep
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '30s'
       - name: Check running servicies
         run: docker ps -a
-      # - name: Create database
-      #   run: |
-      #     bundler exec rails webpacker:install
-      #     bundler exec rails db:create RAILS_ENV=ci_test
-      #     bundler exec rails db:migrate RAILS_ENV=ci_test
-      # - name: Run tests
-      #   run: bundler exec rspec spec
-      # - name: Upload coverage results    
-      #   uses: actions/upload-artifact@master
-      #   if: always()
-      #   with:
-      #     name: coverage-report
-      #     path: coverage
-      #     retention-days: 5
+      - name: Create database
+        run: |
+          docker exec imrepo_monolith bundler exec rails webpacker:install
+          docker exec imrepo_monolith bundler exec rails db:create RAILS_ENV=test
+          docker exec imrepo_monolith bundler exec rails db:migrate RAILS_ENV=test
+      - name: Run tests
+        run: docker exec imrepo_monolith bundler exec rspec spec
+      - name: Upload coverage results    
+        uses: actions/upload-artifact@master
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage
+          retention-days: 5
