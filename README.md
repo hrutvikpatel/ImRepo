@@ -95,7 +95,6 @@ This application was made using `Ruby on Rails`.
 
 ### Improvements that I want to make
 * Store images on AWS S3
-* Use MySQL as DB instead of SQLite
 * Search images using machine learning instead of just image description
 * Add payments flow using Stripe and PayPal
 * Implement profile for user accounts
@@ -117,15 +116,13 @@ I followed this guide to help me achieve this: [https://docs.docker.com/compose/
 
 ### Database Setup
 
-This application uses SQLite, which is the default rails DB.
+This application uses PostgresSQL.
 
 Once your docker container is running, and if you haven't setup your database you will face a DB issue. To setup your the database follow these steps:
 1. Find the container id via `docker ps`
 2. Run: `docker exec -it <insert-container-id-here> bash` (This will get a bash shell inside the container)
-3. Create db: `rails db:create`
-4. Run all the db:migrations: `rails db:migrate`
-5. Now we need to create an admin user via `rails console` so that an admin can setup the products and categories for the store.
-	1. Run: `rails c` (This will bring up the rails command line and gives you access to make changes to the DB or test out code)
-	2. To create an admin user run: `Admin.create(:email => 'email', :password => 'password')`
-	3. You can now login using the admin credentials via `/admins/sign_in`
+3. Setup DB:
+	1. First comment out line 9 and 10 in app/models/product.rb (This can be changed by not using the product model to insert into the table in the seed.rb file).
+	2. Run `rails db:setup`. This will create, migrate and seed the database with dummy products, categories, orders, account, user and admin.
+	3. Uncomment line 9 and 10 in app/models/product.rb.
 

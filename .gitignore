@@ -43,3 +43,4 @@ db/developmeny.sqlite3
 db/test.sqlite3
 
 /coverage
+/postgres-data

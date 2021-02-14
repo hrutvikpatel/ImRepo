@@ -14,7 +14,7 @@ class Product < ApplicationRecord
     if search
       Product.where('title LIKE :search OR description LIKE :search', search: "%#{search}%")
     else
-      Product.all.includes(image_attachment: :blob)
+      Product.with_attached_image.all
     end
   end
 
