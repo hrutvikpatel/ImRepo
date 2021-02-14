@@ -1,6 +1,11 @@
 <%= render partial: "shared/hero", locals: { title: @category.name, subtitle: "Category" } %>
 <div class="container">
   <div class="row">
+  <% if !@products.count.zero? %>
+    <%= render partial: "shared/product", collection: @products  %>
+    <% else %>
+      <p>Category has no images!</p>
+    <% end %>
     <%= render partial: "shared/product", collection: @products  %>
   </div>
 </div>
