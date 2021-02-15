@@ -91,7 +91,7 @@ This application was made using `Ruby on Rails`.
 	* Allows association of product, user, and account.
 	* The order, also contains a cost attribute, to show how much the customer paid for the product at the time of purchase.
 	* Relationships:
-		* has one `account`, `user` and `product`
+		* has one `account`, `product`
 
 ### Improvements that I want to make
 * Store images on AWS S3
