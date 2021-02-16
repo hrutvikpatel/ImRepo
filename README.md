@@ -101,6 +101,7 @@ This application was made using `Ruby on Rails`.
 * Allow image download
 * Use React for frontend instead of rails views and bootstrap
 * Add access scopes
+* REMOVE N+1 queries
 
 ## Local Development Setup Using Docker
 
