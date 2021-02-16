@@ -95,13 +95,12 @@ This application was made using `Ruby on Rails`.
 
 ### Improvements that I want to make
 * Store images on AWS S3
-* Search images using machine learning instead of just image description
+* Search images using machine learning or elastic search instead of just image description
 * Add payments flow using Stripe and PayPal
 * Implement profile for user accounts
 * Allow image download
 * Use React for frontend instead of rails views and bootstrap
-* Add test cases and coverage report
-* Add access controll
+* Add access scopes
 
 ## Local Development Setup Using Docker
 
